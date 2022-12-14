@@ -1,12 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
-class Usuario(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=64)
-    lastname = models.CharField(max_length=64)
-    email = models.EmailField(unique=True, max_length=254)
-    active = models.BooleanField(default=True)
+class Usuario(AbstractUser):
+    pass
 
-    def __str__(self):
-        return self.user.username
+class Proyect(models.Model):
+    user = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    nmproy = models.CharField(max_length=64)
+    typroy = models.CharField(max_length=64)

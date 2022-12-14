@@ -1,15 +1,49 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}IEB{% endblock %}
 
-{% block content %}
+{% block content1 %}
 {% if user.is_authenticated %}
-  <p>Usuario: {{ user.username }}</p>  
-  <p>ID: {{ user.pk }}</p>
-  <p>email: {{ message1 }}</p>
-  <p><a href="{% url 'logout' %}">Salir</a></p>
+<div class="wrapper">
+    <div class="left">
+        <a href="{% url 'logout' %}">
+          <i class="fas fa-home"></i>
+        </a>
+    </div>
+    <div class="right">
+        <p>{{name}} {{lastname}}<br><span>{{email}}<br>{{ user.username }}</span></p>
+        <img src="{% static '/images/profile.jpg' %}" alt="avatar" width="52">
+    </div>
+</div>
 {% else %}
   <p>¿Quieres Ingresar?</p>
   <a href="{% url 'login' %}">Ingresar</a>
 {% endif %}
 {% endblock %}
+
+{% block content2 %}
+{% if user.is_authenticated %}
+  <form action="#" target="" method="get" name="config">
+
+    <label for="current">Corriente:</label>
+    <input type="number" name="current" id="current" placeholder="Amperios (A)"/><br>
+
+    <label for="voltage">Tensión:</label>
+    <input type="number" name="voltage" id="voltage" placeholder="Voltios (V)"/><br>
+
+    <label for="instalation" />Instalación:</label>
+    <input type="text" name="instalation" id="instalation"/><br>
+
+    <label for="material">Material:</label>
+    <input type ="text" name="material" id="material"/><br>
+
+    <label for="proyect">Asunto:</label>
+      <select name="menu" name="menu" id="menu">
+        {% for nmproy in list_nmproy %}
+          <option value=nmproy>{{nmproy}}</option>
+        {% endfor %}
+      </select><br>
+    <input type="submit" name="enviar" value="CALCULAR"/>
+  </form>
+  {% endif %}
+  {% endblock %}

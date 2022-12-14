@@ -1,18 +1,21 @@
-from django.shortcuts import render, get_object_or_404
-from django.views import View
 from django.views.generic.base import TemplateView
-from django.contrib.auth import get_user_model
+from .models import Usuario, Proyect
 
-Usuario = get_user_model()
 
 class HomeLogin(TemplateView):
     template_name='home.html'
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(HomeLogin, self).get_context_data(*args, **kwargs)
+    def get(self, request, *args, **kwargs):
+        user = request.user.id
+        info = Usuario.objects.get(id=user)
+        list_nmproy = list(Proyect.objects.values_list('nmproy',flat=True))
+ 
+        context = self.get_context_data(**kwargs)
         context={
-            'nombre': "Aqui Va el Email",
-            'message1': "email"   
+            'email':info.email,
+            'name':info.first_name,
+            'lastname':info.last_name,
+            'IsActive':info.is_active,
+            'list_nmproy':list_nmproy
         }
-
-        return context
+        return self.render_to_response(context)

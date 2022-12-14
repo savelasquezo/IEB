@@ -31,14 +31,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'UserAuthenticate.apps.UserauthenticateConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'UserAuthenticate.apps.UserauthenticateConfig',
-    'WorkInterface.apps.WorkinterfaceConfig',
 ]
 
 MIDDLEWARE = [
@@ -71,10 +70,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'IEBTestProyect.wsgi.application'
 
-
-LOGIN_REDIRECT_URL = "ieb"
-LOGOUT_REDIRECT_URL = "/accounts/login/"
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -88,6 +83,8 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -118,3 +115,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# UserModel -->Conif
+AUTH_USER_MODEL = 'UserAuthenticate.Usuario'
+USERNAME_FIELD = 'username'
+
+# URLs -->LOGIN/LOGOUT
+LOGIN_REDIRECT_URL = "ieb"
+LOGOUT_REDIRECT_URL = "/accounts/login/"
