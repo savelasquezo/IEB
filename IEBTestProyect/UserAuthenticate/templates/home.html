@@ -1,49 +1,35 @@
-{% extends 'base.html' %}
+{% extends 'head.html' %}
 {% load static %}
-{% block title %}IEB{% endblock %}
-
-{% block content1 %}
-{% if user.is_authenticated %}
-<div class="wrapper">
-    <div class="left">
-        <a href="{% url 'logout' %}">
-          <i class="fas fa-home"></i>
-        </a>
-    </div>
-    <div class="right">
-        <p>{{name}} {{lastname}}<br><span>{{email}}<br>{{ user.username }}</span></p>
-        <img src="{% static '/images/profile.jpg' %}" alt="avatar" width="52">
-    </div>
-</div>
-{% else %}
-  <p>¿Quieres Ingresar?</p>
-  <a href="{% url 'login' %}">Ingresar</a>
-{% endif %}
-{% endblock %}
 
 {% block content2 %}
-{% if user.is_authenticated %}
-  <form action="#" target="" method="get" name="config">
+  {% if user.is_authenticated %}
+    <div id="container" name=interface>
+      <form action="work" target="_self" method="get" name="config" onsubmit="return ValidateForm()">
+        <label for="current">Corriente:</label>
+        <input type="number" name="current" id="current" placeholder="Amperios (A)"/><br>
+        <label for="voltage">Tensión:</label>
+        <input type="number" name="voltage" id="voltage" placeholder="Voltios (V)"/><br>
+        <label for="instalation">Instalación:</label>
+        <input type="text" name="instalation" id="instalation"/><br>
 
-    <label for="current">Corriente:</label>
-    <input type="number" name="current" id="current" placeholder="Amperios (A)"/><br>
-
-    <label for="voltage">Tensión:</label>
-    <input type="number" name="voltage" id="voltage" placeholder="Voltios (V)"/><br>
-
-    <label for="instalation" />Instalación:</label>
-    <input type="text" name="instalation" id="instalation"/><br>
-
-    <label for="material">Material:</label>
-    <input type ="text" name="material" id="material"/><br>
-
-    <label for="proyect">Asunto:</label>
-      <select name="menu" name="menu" id="menu">
-        {% for nmproy in list_nmproy %}
-          <option value=nmproy>{{nmproy}}</option>
-        {% endfor %}
-      </select><br>
-    <input type="submit" name="enviar" value="CALCULAR"/>
-  </form>
-  {% endif %}
-  {% endblock %}
+        <label for="material">Material:</label>
+        <select name="material" id="material">
+          {% for material in list_material %}
+            <option value={{material}}>{{material}}</option>
+          {% endfor %}
+        </select>
+        
+        <label for="proyect">NmProy:</label>
+        <select name="nmproy" id="nmproy" required>
+          {% for nmproy in list_nmproy %}
+            <option value={{nmproy}}>{{nmproy}}</option>
+          {% endfor %}
+        </select>
+        <input type="submit" name="rn" value="CALCULAR"/>
+      </form>
+      <form action="{% url 'login' %}" name="back">
+        <button>SALIR</button>
+      </form>
+    </div>
+  {% endif %} 
+{% endblock %}

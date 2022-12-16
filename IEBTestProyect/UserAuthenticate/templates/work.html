@@ -1,0 +1,41 @@
+{% extends 'head.html' %}
+{% load static %}
+
+{% block content3 %}
+    {% if user.is_authenticated %}
+        <div id="container" name=interface>
+            <form action="save" target="_self" method="get" name="results">
+                <label for="name">Guardar:</label>
+                <input type="text" name="savename" id="savename"/><p></p>
+
+                <h4 class="splitext">Corriente(A):<span>{{current}}</span></h4>
+                <input type="hidden" name="current" value="{{current}}">
+                
+                <h4 class="splitext">Tensión(V):<span>{{voltage}}</span></h4>
+                <input type="hidden" name="voltage" value="{{voltage}}">
+
+                <h4 class="splitext">Ampacidad(A):<span>{{ampacity}}</span></h4>
+                <input type="hidden" name="ampacity" value="{{ampacity}}">
+
+                <h4 class="splitext">Corriente(V)*:<span>{{new_current}}</span></h4>
+                <input type="hidden" name="new_current" value="{{new_current}}">
+                <h6 class="splitext">(*) Valor Corregido</h6><br>
+
+                <h4 class="splitext">Usuario:<span>{{user.username}}</span></h4>
+                <input type="hidden" name="username" value="{{user.username}}">
+
+                <h4 class="splitext">NmProy:<span>{{nmproy}}</span></h4><br>
+                <input type="hidden" name="nmproy" value="{{nmproy}}">
+
+                <h4 class="splitext">Fecha:<span>{{date_select}}</span></h4><br>
+                <input type="hidden" name="date_select" value="{{date_select}}">
+
+                <textarea name="mensaje" for="mensaje" maxlength="300"></textarea>
+                <input type="submit" name="sv" value="GUARDAR"/>
+            </form>
+            <form action="{% url 'ieb' %}" name="back">
+                <button>CANCELAR</button>
+            </form>
+        </div>
+    {% endif %} 
+{% endblock %}  

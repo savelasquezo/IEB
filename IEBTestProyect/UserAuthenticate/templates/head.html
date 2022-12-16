@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content1 %}
+{% if user.is_authenticated %}    
+<div class="wrapper">
+    <div class="left">
+        <a href="{% url 'logout' %}">
+            <i class="fas fa-home"></i>
+        </a>
+    </div>
+    <div class="right">
+        <p>{{name}} {{lastname}}<br><span>{{email}}<br>{{ user.username }}</span></p>
+        <img src="{% static '/images/IEB-0.png' %}" name="avatar">
+    </div>
+</div>
+{% else %}
+<p>¿Quieres Ingresar?</p>
+<a href="{% url 'login' %}">Ingresar</a>
+{% endif %} 
+{% endblock %}

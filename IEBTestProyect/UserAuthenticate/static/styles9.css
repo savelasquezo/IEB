@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+*{font-family: 'Josefin Sans', sans-serif;}
+
+.wrapper {
+	width: 100%;
+	background: #cf0024;
+	display: flex;
+	justify-content: space-between;
+	padding: 10px 25px;
+	color: #ffffff;
+}
+
+.wrapper .left{
+	display: flex;
+	align-items: center;
+	height: 50px;
+	text-align: right;
+  }.wrapper .left a{color: #ffffff;}
+
+.wrapper .right{
+  display: flex;
+  align-items: center;
+  height: 50px;
+  text-align: right;
+}.wrapper .right img{margin: 0 10px;}.wrapper .right span{font-size: 10px;}
+
+
+
+*{box-sizing:border-box;}
+
+#container[name=interface]{
+	width:320px;
+	padding:16px;
+	margin:auto;
+	margin-top:2%;
+	border:2px solid rgb(150, 160, 180);
+	border-radius:10px;
+	background-color:#ccc;
+}
+
+#container[name=login]{
+	width:320px;
+	padding:16px;
+	margin:auto;
+	margin-top:8%;
+	border:2px solid rgb(150, 160, 180);
+	border-radius:10px;
+	background-color:#ccc;
+}
+
+img[name=logo_ieb]{
+	display:block;
+	margin:auto;
+	width:50%;
+	height:50%;
+}
+
+img[name=avatar]{
+	display:block;
+	margin:auto;
+	width:100%;
+	height:100%;
+}
+
+.form{
+	width:320px;
+	padding:16px;
+	margin:auto;
+	margin-top:2%;
+	border-radius:10px;
+	background-color:#ccc;
+}
+
+form label{
+	width:73px;
+	font-weight:bold;
+	display:inline-block;
+}
+
+input[type=number]{
+	width:180px;
+	padding:7px 10px;
+	border:1px solid #f6f6f6;
+	border-radius:10px;
+	background-color:#f6f6f6;
+	margin:8px 0;
+	margin-left: 20px;
+	display:inline-block;
+}
+
+form input[type="text"]{
+	width:180px;
+	padding:3px 10px;
+	border:1px solid #f6f6f6;
+	border-radius:3px;
+	background-color:#f6f6f6;
+	margin:8px 0;
+	margin-left: 20px;
+	display:inline-block;
+}
+
+form input[type="password" i]{
+	width:180px;
+	padding:3px 10px;
+	border:1px solid #f6f6f6;
+	border-radius:3px;
+	background-color:#f6f6f6;
+	margin:8px 0;
+	margin-left: 20px;
+	display:inline-block;
+}
+
+form label[for="name"]{
+	margin-left: 3%;
+}input[type=text][name=savename]{margin-left: 5%;}
+
+.splitext { display:block;margin:10px;}
+.splitext span { display:block;float:right;width:50%;margin-left:10px;text-align: right;}
+
+label[for="proyect"]{
+	margin-top:8px;
+}select {display: inline-block;width: 180px;height: 20px;margin-left: 20px;}
+
+form input[type="submit"]{
+	width:100%;
+	padding:8px 16px;
+	border-radius:5px;
+	display:block;
+	color:#fff;
+	text-align: center;
+} form input[type="submit"]:hover{cursor:pointer;}
+
+form input[type="submit"][name="rn"]{
+	margin-top: 10px;
+	border:2px solid rgb(30, 70, 10);
+	background-color:rgb(5, 50, 10);
+} 
+form input[type="submit"][name="sv"]{
+	margin-top: 10px;
+	border:2px solid rgb(50, 60, 90);
+	background-color:rgb(5, 40, 50);
+}
+
+form button{
+	width:100%;
+	margin-top:5px;
+	padding:8px 16px;
+	border-radius:5px;
+	border:2px solid rgb(90, 50, 50);
+	display:block;
+	color:#fff;
+	text-align: center;
+	background-color:rgb(90, 10, 10);
+}form button:hover{cursor:pointer;}
+
+textarea {
+	width:100%;
+	height:70px;
+	margin-top:-5%;
+	border:2px ridge #e0c0c0;
+	border-radius:3px;
+	background-color:#f6f6f6;			
+	resize:none;
+	display:block;
+	line-height:10px;
+}
