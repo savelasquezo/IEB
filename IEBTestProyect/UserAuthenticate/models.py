@@ -18,7 +18,7 @@ class Proyect(models.Model):
         verbose_name_plural = _("Asignaciones")
 
 class Wireline(models.Model):
-    cod_wireline = models.BigAutoField(primary_key=True)
+    cod_wireline = models.BigAutoField(primary_key=True,verbose_name="Codigo")
     material = models.CharField(max_length=128,verbose_name="Material")
     ampacity = models.FloatField(verbose_name="Ampacidad")
     new_voltage = models.FloatField(verbose_name="Tension*")

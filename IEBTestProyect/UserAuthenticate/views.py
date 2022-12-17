@@ -24,7 +24,10 @@ class Workresults(HomeLogin):
             instalation = str(request.GET.get("instalation"))
             material = str(request.GET.get("material"))
             nmproy = str(request.GET.get("nmproy"))
-            
+        
+        except TypeError:
+            return redirect('/accounts/login/')
+        
         except ValueError:
             return render(request, "home.html",{
                 'error_message':f'¡Incorrecto!',

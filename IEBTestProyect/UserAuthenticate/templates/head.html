@@ -11,13 +11,18 @@
     </div>
     <div class="right">
         <p>{{name}} {{lastname}}<br><span>{{email}}<br>{{ user.username }}</span></p>
-        <object data="{% static '/images/IEB-0.png' %}">
-            <img src="{% static '/images/IEB-0111.png' %}">
+        <object data="{% static '/images/templates/IEB-0.png' %}">
+            <img src="{% static '/images/templates/IEB-0.png' %}">
         </object>
     </div>
 </div>
 {% else %}
-<p>¿Quieres Ingresar?</p>
-<a href="{% url 'login' %}">Ingresar</a>
+<div id="container" name=interface>
+    <img src="{% static '/images/templates/IEB-1.png' %}" name="logo_ieb" width="52">
+    <h3 name="login">¿Quieres Ingresar?</h3>
+    <form action="{% url 'login' %}" name="bk">
+        <button>INGRESAR</button>
+    </form>
+</div>
 {% endif %} 
 {% endblock %}
