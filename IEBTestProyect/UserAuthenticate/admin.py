@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import Usuario, Proyect, Wireline, SavesProyects
 from django.contrib.auth.admin import UserAdmin
+
+from .models import Usuario, Proyect, Wireline, SavesProyects
 
 class ProyectAdmin(admin.ModelAdmin):
     list_display = (
@@ -21,6 +22,8 @@ class WirelineAdmin(admin.ModelAdmin):
         )
     
 class SavesProyectsAdmin(admin.ModelAdmin):
+    
+    
     list_display = (
         "savename",
         "username",
@@ -36,3 +39,9 @@ admin.site.register(Usuario, UserAdmin)
 admin.site.register(Proyect, ProyectAdmin)
 admin.site.register(Wireline, WirelineAdmin)
 admin.site.register(SavesProyects, SavesProyectsAdmin)
+
+
+
+
+
+

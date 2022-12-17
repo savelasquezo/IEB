@@ -27,13 +27,13 @@ class Wireline(models.Model):
     new_current = models.FloatField(verbose_name="Corriente*")
 
     class Meta:
-        verbose_name = _("Catalogo")
+        verbose_name = _("Cable")
         verbose_name_plural = _("Catalogo")
         
 
 class SavesProyects(models.Model):
     
-    savename = models.CharField(max_length=128,verbose_name="Seleccion",unique=True,null=False)
+    savename = models.CharField(max_length=128,verbose_name="Seleccion",null=False)
     username = models.CharField(max_length=128,verbose_name="Usuario",null=False)
     nmproy = models.CharField(max_length=128,verbose_name="Nm-Proyecto",null=False)
 
@@ -41,6 +41,7 @@ class SavesProyects(models.Model):
     voltage = models.FloatField(verbose_name="Tension",null=False)
     ampacity = models.FloatField(verbose_name="Ampacidad",null=False)
     new_current = models.FloatField(verbose_name="Corriente*",null=False)
+    message = models.CharField(verbose_name="Comentarios",max_length=256,blank=True,null=True)
     
     datenow = models.DateField(auto_now=False, auto_now_add=False,verbose_name="Fecha")
 

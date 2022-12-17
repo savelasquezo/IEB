@@ -11,7 +11,9 @@
     </div>
     <div class="right">
         <p>{{name}} {{lastname}}<br><span>{{email}}<br>{{ user.username }}</span></p>
-        <img src="{% static '/images/IEB-0.png' %}" name="avatar">
+        <object data="{% static '/images/IEB-0.png' %}">
+            <img src="{% static '/images/IEB-0111.png' %}">
+        </object>
     </div>
 </div>
 {% else %}

@@ -4,16 +4,22 @@ def GlobalContext(request):
     if request.user.id is not None:
         user = request.user.id
         info_user = Usuario.objects.get(id=user)
-        
+
+        list_material = list(Wireline.objects.values_list('material',flat=True).distinct())
+        list_nmproy = list(Proyect.objects.values_list('nmproy',flat=True).distinct())
+
         #All-Proyects (nmproy) Where The User has Permissions
-        list_user_proy = list(Proyect.objects.filter(user=user).values_list('nmproy',flat=True).distinct())
+        list_user_proy = list(Proyect.objects.filter(user=request.user.id).values_list('nmproy',flat=True).distinct())
         
         return {
+            'username':info_user.username,
             'email':info_user.email,
             'name':info_user.first_name,
             'lastname':info_user.last_name,
             'IsActive':info_user.is_active,
-            'valid_nmproy':list_user_proy
+            'list_user_proy':list_user_proy,
+            'list_material':list_material,
+            'list_nmproy':list_nmproy
             }
     return {}   
 

@@ -2,39 +2,43 @@ from datetime import datetime
 
 from django.views.generic.base import TemplateView
 from django.utils import timezone
+from django.shortcuts import redirect, render
 
-from .models import Proyect, Wireline, SavesProyects
+from .models import Proyect, SavesProyects
 from .functions import Ampacity, QuerySelect
+
 
 
 class HomeLogin(TemplateView):
     template_name='home.html'
-    
-    def get(self, request, *args, **kwargs):
-
-        list_material = list(Wireline.objects.values_list('material',flat=True).distinct())
-        list_nmproy = list(Proyect.objects.values_list('nmproy',flat=True).distinct())
- 
-        context = self.get_context_data(**kwargs)
-        context={
-            'list_material':list_material,
-            'list_nmproy':list_nmproy
-        }
-        return self.render_to_response(context)
 
 class Workresults(HomeLogin):
     
     template_name='work.html'
 
     def get(self, request, *args, **kwargs):
-
-        current= float(request.GET.get("current"))
-        voltage = float(request.GET.get("voltage"))
-        instalation = str(request.GET.get("instalation"))
-        material = str(request.GET.get("material"))
-        nmproy = str(request.GET.get("nmproy"))
-        date_select = timezone.now()
         
+        try:
+            current= float(request.GET.get("current"))
+            voltage = float(request.GET.get("voltage"))
+            instalation = str(request.GET.get("instalation"))
+            material = str(request.GET.get("material"))
+            nmproy = str(request.GET.get("nmproy"))
+            
+        except ValueError:
+            return render(request, "home.html",{
+                'error_message':f'¡Incorrecto!',
+                'help_message':'Ingrese los valores Correctante'
+            })
+        
+        list_user_proy = request.GET.get("list_user_proy")
+        if nmproy not in list_user_proy:
+            return render(request, "home.html",{
+                'error_message':f'¡Acceso Denegado!',
+                'help_message':'El Usuario no ha sido ingresado al proyecto'
+            })
+
+        date_select = timezone.now()
         #All-TypeProyects (for specific "mproy") Where The User has Permissions
         typroy =  list(Proyect.objects.filter(user=request.user.id,nmproy=nmproy).values_list('typroy',flat=True).distinct())
         
@@ -65,12 +69,11 @@ class Workresults(HomeLogin):
     
     
 class Saveresults(HomeLogin):
-
-    template_name='save.html'
     
     def get(self, request, *args, **kwargs):
 
         savename = str(request.GET.get("savename"))
+                
         username = str(request.GET.get('username'))
         nmproy = str(request.GET.get('nmproy'))
         
@@ -78,8 +81,14 @@ class Saveresults(HomeLogin):
         voltage = float(request.GET.get('voltage'))
         ampacity = float(request.GET.get('ampacity'))
         new_current = float(request.GET.get('new_current'))
+
+        message = str(request.GET.get('message'))
+        
         date_select = datetime.strptime(request.GET.get('date_select'), '%Y-%m-%d %H:%M')
 
+        list_savename = list(SavesProyects.objects.values_list('savename',flat=True))
+        if savename in list_savename:
+            savename = f'{savename} [{date_select.strftime("%Y-%m-%d")}]'
         
         SavesProyects.objects.create(
             savename = savename,
@@ -89,13 +98,11 @@ class Saveresults(HomeLogin):
             voltage = voltage,
             ampacity = ampacity,
             new_current = new_current,
+            message = message,
             datenow = date_select
             )
         
-        context = self.get_context_data(**kwargs)
-        context={
-            'IsSave':True
-        }
-
-        return self.render_to_response(context)
-    
+        return render(request, "work.html",{
+            'succes_message':f'¡Guardado!',
+            'help_message':'Seleccion guardada Correctamente'
+        })

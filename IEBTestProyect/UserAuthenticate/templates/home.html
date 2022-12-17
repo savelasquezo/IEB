@@ -4,11 +4,16 @@
 {% block content2 %}
   {% if user.is_authenticated %}
     <div id="container" name=interface>
-      <form action="work" target="_self" method="get" name="config" onsubmit="return ValidateForm()">
+      {% if error_message %}
+          <h3 name="error_message">{{ error_message }}</h3>
+          <h6 name="help_message">{{ help_message }}</h6>
+          <button type="button" name="bk" onclick="history.back()">ACEPTAR</button>
+      {% else %}
+      <form action="work" target="_self" method="get" name="config">
         <label for="current">Corriente:</label>
-        <input type="number" name="current" id="current" placeholder="Amperios (A)"/><br>
+        <input type="number" name="current" id="current" step="0.01" placeholder="Amperios (A)"/><br>
         <label for="voltage">Tensión:</label>
-        <input type="number" name="voltage" id="voltage" placeholder="Voltios (V)"/><br>
+        <input type="number" name="voltage" id="voltage" step="0.01" placeholder="Voltios (V)"/><br>
         <label for="instalation">Instalación:</label>
         <input type="text" name="instalation" id="instalation"/><br>
 
@@ -25,11 +30,14 @@
             <option value={{nmproy}}>{{nmproy}}</option>
           {% endfor %}
         </select>
-        <input type="submit" name="rn" value="CALCULAR"/>
-      </form>
-      <form action="{% url 'login' %}" name="back">
-        <button>SALIR</button>
-      </form>
+
+        <input type="hidden" name="list_user_proy" value="{{list_user_proy}}">
+          <input type="submit" name="rn" value="CALCULAR"/>
+        </form>
+        <form action="{% url 'login' %}" name="back">
+          <button>SALIR</button>
+        </form>
+      {% endif %}
     </div>
   {% endif %} 
 {% endblock %}

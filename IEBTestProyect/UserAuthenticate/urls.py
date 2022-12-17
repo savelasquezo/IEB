@@ -6,5 +6,5 @@ urlpatterns = [
     path("accounts/", include("django.contrib.auth.urls")),
     path('', HomeLogin.as_view(), name='ieb'),
     path('work/', Workresults.as_view(), name='work'),
-    path('work/save/', Saveresults.as_view(), name='save'),
+    path('work/ieb', Saveresults.as_view(), name='save'),
 ]

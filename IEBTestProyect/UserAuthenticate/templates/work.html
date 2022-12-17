@@ -4,7 +4,17 @@
 {% block content3 %}
     {% if user.is_authenticated %}
         <div id="container" name=interface>
-            <form action="save" target="_self" method="get" name="results">
+            {% if succes_message %}
+                <h3 name="succes_message">{{ succes_message }}</h3>
+                <h6 name="help_message">{{ help_message }}</h6>
+                <form action="{% url 'ieb' %}">
+                    <button name="bk">CONTINUAR</button>
+                </form>
+                <form action="{% url 'login' %}">
+                    <button>SALIR</button>
+                </form>
+            {% else %}
+            <form action="ieb" target="_top" method="get" name="results">
                 <label for="name">Guardar:</label>
                 <input type="text" name="savename" id="savename"/><p></p>
 
@@ -19,7 +29,7 @@
 
                 <h4 class="splitext">Corriente(V)*:<span>{{new_current}}</span></h4>
                 <input type="hidden" name="new_current" value="{{new_current}}">
-                <h6 class="splitext">(*) Valor Corregido</h6><br>
+                <h6 class="splitext" name="help_text">(*) Valor Corregido</h6><br>
 
                 <h4 class="splitext">Usuario:<span>{{user.username}}</span></h4>
                 <input type="hidden" name="username" value="{{user.username}}">
@@ -30,12 +40,13 @@
                 <h4 class="splitext">Fecha:<span>{{date_select}}</span></h4><br>
                 <input type="hidden" name="date_select" value="{{date_select}}">
 
-                <textarea name="mensaje" for="mensaje" maxlength="300"></textarea>
+                <textarea name="message" for="message" maxlength="256"></textarea>
                 <input type="submit" name="sv" value="GUARDAR"/>
             </form>
             <form action="{% url 'ieb' %}" name="back">
                 <button>CANCELAR</button>
             </form>
+            {% endif %}
         </div>
     {% endif %} 
 {% endblock %}  
