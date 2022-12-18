@@ -1,6 +1,14 @@
 from .models import Usuario, Proyect, Wireline
 
 def GlobalContext(request):
+    
+    """
+    Generates a global context with basic user information for use by all views of the project.
+    "IEBTestProyect/settings.py"
+    TEMPLATES = [{'OPTIONS': {'context_processors': ['UserAuthenticate.functions.GlobalContext',],},},]
+    """
+    
+    
     if request.user.id is not None:
         user = request.user.id
         info_user = Usuario.objects.get(id=user)
@@ -31,6 +39,6 @@ def Ampacity(current):
     return ampacity
 
 def QuerySelect(material,ampacity):
-    new_current = Wireline.objects.filter(material=material,ampacity=ampacity).first().new_current
-    return new_current
+    WireLineSelect = Wireline.objects.filter(material=material,ampacity=ampacity).first()
+    return WireLineSelect
 

@@ -7,13 +7,15 @@ from django.shortcuts import redirect, render
 from .models import Proyect, SavesProyects
 from .functions import Ampacity, QuerySelect
 
-
-
 class HomeLogin(TemplateView):
     template_name='home.html'
 
 class Workresults(HomeLogin):
-    
+
+    """Gets the values entered by the user and presents them in a form-like interface.
+        Allowing the option to save the content in the database.
+    """
+
     template_name='work.html'
 
     def get(self, request, *args, **kwargs):
@@ -53,7 +55,7 @@ class Workresults(HomeLogin):
         """QuerySelect() Takes the actual "material"/"ampacity" values to find new_current
         Returns: new_current 
         """
-        new_current = int(QuerySelect(material,ampacity))
+        new_current = int(QuerySelect(material,ampacity).new_current)
         
         context = self.get_context_data(**kwargs)
         context={
@@ -73,6 +75,12 @@ class Workresults(HomeLogin):
     
 class Saveresults(HomeLogin):
     
+    """
+    Gets the information from the form and creates a new entry in the database 
+    with the name of the file and all the information from the user's job.
+    If a file with the same name is found, it will add the creation date to the end of the line.
+    """
+
     def get(self, request, *args, **kwargs):
 
         savename = str(request.GET.get("savename"))

@@ -11,9 +11,9 @@
       {% else %}
       <form action="work" target="_self" method="get" name="config">
         <label for="current">Corriente:</label>
-        <input type="number" name="current" id="current" step="0.01" placeholder="Amperios (A)"/><br>
+        <input type="number" name="current" id="current" min="0" step="0.01" placeholder="Amperios (A)"/><br>
         <label for="voltage">Tensión:</label>
-        <input type="number" name="voltage" id="voltage" step="0.01" placeholder="Voltios (V)"/><br>
+        <input type="number" name="voltage" id="voltage" min="0" step="0.01" placeholder="Voltios (V)"/><br>
         <label for="instalation">Instalación:</label>
         <input type="text" name="instalation" id="instalation"/><br>
 

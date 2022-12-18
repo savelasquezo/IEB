@@ -3,7 +3,12 @@ from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 
 class Usuario(AbstractUser):
-
+    """
+    
+    "IEBTestProyect/settings.py"
+    AUTH_USER_MODEL = 'UserAuthenticate.Usuario'
+    USERNAME_FIELD = 'username'
+    """
     class Meta:
         verbose_name = _("Usuario")
         verbose_name_plural = _("Usuarios")
