@@ -67,7 +67,3 @@ Administrador: http://127.0.0.1:8000/ieb/ (Localhost)
 
 ## Autor ✒️
 * **Simon Velasquez** - [savelasquezo](https://github.com/savelasquezo)
-
-
-
-
