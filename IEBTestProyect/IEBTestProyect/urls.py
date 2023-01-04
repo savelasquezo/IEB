@@ -18,5 +18,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('ieb/', admin.site.urls),
-    path('', include("UserAuthenticate.urls")),
+    path('', include("Interface.urls")),
 ]

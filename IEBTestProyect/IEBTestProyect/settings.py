@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'UserAuthenticate.apps.UserauthenticateConfig',
+    'Interface.apps.InterfaceConfig',
 ]
 
 MIDDLEWARE = [
@@ -53,7 +53,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'IEBTestProyect.urls'
 
 
-# UserAuthenticate.functions.GlobalContext -->Deined Global Variables Context 
+# Interface.functions.GlobalContext -->Deined Global Variables Context 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -65,7 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'UserAuthenticate.functions.GlobalContext',
+                'Interface.functions.GlobalContext',
             ],
         },
     },
@@ -100,7 +100,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization  # America/Bogota Zona Horaria USE_TZ = False
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'America/Bogota'
 
@@ -120,7 +120,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # UserModel -->Conif
-AUTH_USER_MODEL = 'UserAuthenticate.Usuario'
+AUTH_USER_MODEL = 'Interface.UserIEB'
 USERNAME_FIELD = 'username'
 
 # URLs -->LOGIN/LOGOUT

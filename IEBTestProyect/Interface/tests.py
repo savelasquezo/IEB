@@ -1,7 +1,6 @@
 import random
 
 from django.test import TestCase
-from django.urls import reverse
 
 from .models import Wireline
 from .functions import Ampacity
@@ -13,7 +12,7 @@ class WirelineTestCase(TestCase):
     """
     while True:
         try:
-            TestSteps = int(input("Iteraciones:"))
+            TestSteps = int(input("Iterations:"))
             break
         except:
             print("¡Invalid Value!")

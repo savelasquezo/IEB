@@ -2,11 +2,11 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 
-class Usuario(AbstractUser):
+class UserIEB(AbstractUser):
     """
-    
+    Custom user model inherited from abstractly user.
     "IEBTestProyect/settings.py"
-    AUTH_USER_MODEL = 'UserAuthenticate.Usuario'
+    AUTH_USER_MODEL = 'Interface.UserIEB'
     USERNAME_FIELD = 'username'
     """
     class Meta:
@@ -14,7 +14,7 @@ class Usuario(AbstractUser):
         verbose_name_plural = _("Usuarios")
 
 class Proyect(models.Model):
-    user = models.ForeignKey(Usuario, on_delete=models.CASCADE,verbose_name="Usuario")
+    user = models.ForeignKey(UserIEB, on_delete=models.CASCADE,verbose_name="Usuario")
     nmproy = models.CharField(max_length=64,verbose_name="Nm-Proyecto")
     typroy = models.CharField(max_length=64,verbose_name="Ty-Proyecto")
 

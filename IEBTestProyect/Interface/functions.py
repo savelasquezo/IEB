@@ -1,17 +1,17 @@
-from .models import Usuario, Proyect, Wireline
+from .models import UserIEB, Proyect, Wireline
 
 def GlobalContext(request):
     
     """
     Generates a global context with basic user information for use by all views of the project.
     "IEBTestProyect/settings.py"
-    TEMPLATES = [{'OPTIONS': {'context_processors': ['UserAuthenticate.functions.GlobalContext',],},},]
+    TEMPLATES = [{'OPTIONS': {'context_processors': ['Interface.functions.GlobalContext',],},},]
     """
     
     
     if request.user.id is not None:
         user = request.user.id
-        info_user = Usuario.objects.get(id=user)
+        info_user = UserIEB.objects.get(id=user)
 
         list_material = list(Wireline.objects.values_list('material',flat=True).distinct())
         list_nmproy = list(Proyect.objects.values_list('nmproy',flat=True).distinct())

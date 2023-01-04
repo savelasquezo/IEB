@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}IEB{% endblock %}
+
+{% block content1 %}
+<form method="post">
+  {% csrf_token %}
+    <div id="container" name="login">
+      <img src="{% static '/images/templates/IEB-1.png' %}" name="logo_ieb" width="52">
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="username">Usuario</label>
+          {{ form.username }}
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          {{ form.password }}
+        </div>
+        <input type="submit" name= "lg" value="INGRESAR">
+      </form>
+    </div>
+</form>
+{% endblock %}
+
