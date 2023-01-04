@@ -56,7 +56,7 @@ python3 generate_data.py
 
 python3 manage.py runserver
 
-Nota: EL proyecto ofrece la posibilidad de crear automáticamente los registros en la base de datos especificados en la prueba técnica, para ello deberá emplear "python3 generate_data.py" antes de realizar cualquier registro en la base de datos, este mismo creará un Superusuario con el cual podrá administrar el proyecto. 
+Importante: EL proyecto ofrece la posibilidad de crear automáticamente los registros en la base de datos especificados en la prueba técnica, para ello deberá emplear "python3 generate_data.py" antes de realizar cualquier registro en la base de datos, este mismo creará un Superusuario con el cual podrá administrar el proyecto. 
 
 ### Exploracion 💥
 
